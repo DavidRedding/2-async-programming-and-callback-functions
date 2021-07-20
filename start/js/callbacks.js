@@ -16,6 +16,12 @@ function getJSON(url,callback) {  // higher-order function
   xhr.send();
 }
 
+let getProfiles = (json) => {                //the param json represents the data
+  json.people.map(person => {
+    getJSON(wikiUrl + person.name, generateHTML);  // adds the name to the url
+  });
+}
+
 // Generate the markup for each profile
 function generateHTML(data) {
   const section = document.createElement('section');
@@ -39,10 +45,6 @@ function generateHTML(data) {
 }
 
 btn.addEventListener('click', () => {
-  getJSON(astrosUrl, (json) => {   //the param json represents the data
-    json.people.map(person => {
-      getJSON(wikiUrl + person.name, generateHTML); // adds the name to the url
-    });
-  });
-  btn.style.display = 'none'
+  getJSON(astrosUrl, getProfiles);
+  btn.style.display = 'none';
 });
