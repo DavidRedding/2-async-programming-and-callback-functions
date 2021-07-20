@@ -1,4 +1,4 @@
-const astrosUrl = 'http://api.open-notify.org/astros.json';
+const astrosUrl = 'http://api.open-notify.org/astros.json'; // returns all people currently in space
 const wikiUrl = 'https://en.wikipedia.org/api/rest_v1/page/summary/';
 const peopleList = document.getElementById('people');
 const btn = document.querySelector('button');
@@ -37,3 +37,5 @@ function generateHTML(data) {
     `;
   }
 }
+
+btn.addEventListener('click', () => getJSON(astrosUrl));
